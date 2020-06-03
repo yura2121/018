@@ -1,0 +1,15 @@
+Vagrant.configure("2") do |config|
+  config.vm.define "ubuntu" do |ubuntu|
+   ubuntu.vm.box = "ubuntu/bionic64"
+   ubuntu.vm.network "forwarded_port", guest: 80, host:8080
+   ubuntu.vm.synced_folder "~/018/Hometask_5/Tychyna", "/home/vagrant/"
+     ubuntu.vm.provision "shell",
+      inline:
+      "apt-get update
+       apt -y install docker-ce
+       docker run -d
+       pip install docker-compose
+       docker-compose up -d"
+     end
+end
+

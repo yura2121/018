@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+    apacheserver:
+        image: httpd:latest
+	restart: always
+        ports:
+            - "80:8080"
+	links:
+	    - mysql_db
+    mysql_db:
+        image: mysql:latest
+	restart: always
+	environment:
+	  MYSQL_ROOT_PASSWORD yura2121
+	  MYSQL_DATABASE yurki_djok
+	  MYSQL_USER yurki
+	  MYSQL_PASSWORD yura2121
+        ports:        
+	    - "3306:3306"
+        
